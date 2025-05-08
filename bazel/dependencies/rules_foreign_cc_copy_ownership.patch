@@ -2,15 +2,23 @@
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/foreign_cc/private/framework/toolchains/linux_commands.bzl b/foreign_cc/private/framework/toolchains/linux_commands.bzl
-index ba265eb..85cd44d 100644
+index ba265eb..373879b 100644
 --- a/foreign_cc/private/framework/toolchains/linux_commands.bzl
 +++ b/foreign_cc/private/framework/toolchains/linux_commands.bzl
-@@ -249,7 +249,7 @@ def replace_symlink(file):
+@@ -247,9 +247,14 @@ def replace_sandbox_paths(dir_, abs_path):
+ 
+ def replace_symlink(file):
      return """\
++set -x
++set -e
  if [[ -L "{file}" ]]; then
-   target="$(readlink -f "{file}")"
+-  target="$(readlink -f "{file}")"
 -  rm "{file}" && cp -a "${{target}}" "{file}"
-+  rm "{file}" && cp "${{target}}" "{file}"
++  target="$(readlink "{file}")"
++  if ! [ "$(dirname "{file}")/${{target}}" -ef "./"{file}"" ]; then
++    ls -al $(dirname ${{target}})
++    rm "{file}" && cp -aL "${{target}}" "{file}"
++  fi
  fi
  """.format(file = file)
  
