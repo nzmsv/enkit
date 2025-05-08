@@ -1,0 +1,16 @@
+ foreign_cc/private/framework/toolchains/linux_commands.bzl | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/foreign_cc/private/framework/toolchains/linux_commands.bzl b/foreign_cc/private/framework/toolchains/linux_commands.bzl
+index ba265eb..85cd44d 100644
+--- a/foreign_cc/private/framework/toolchains/linux_commands.bzl
++++ b/foreign_cc/private/framework/toolchains/linux_commands.bzl
+@@ -249,7 +249,7 @@ def replace_symlink(file):
+     return """\
+ if [[ -L "{file}" ]]; then
+   target="$(readlink -f "{file}")"
+-  rm "{file}" && cp -a "${{target}}" "{file}"
++  rm "{file}" && cp "${{target}}" "{file}"
+ fi
+ """.format(file = file)
+ 

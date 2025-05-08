@@ -274,12 +274,12 @@ filegroup(
     maybe(
         name = "rules_foreign_cc",
         repo_rule = http_archive,
-        sha256 = "9561b3994232ccb033278ade83c2ce48e763e9cae63452cd8fea457bedd87d05",
-        strip_prefix = "rules_foreign_cc-816905a078773405803e86635def78b61d2f782d",
-        url = "https://github.com/bazelbuild/rules_foreign_cc/archive/816905a078773405803e86635def78b61d2f782d.tar.gz",
+        sha256 = "e0f0ebb1a2223c99a904a565e62aa285bf1d1a8aeda22d10ea2127591624866c",
+        strip_prefix = "rules_foreign_cc-0.14.0",
+        url = "https://github.com/bazel-contrib/rules_foreign_cc/releases/download/0.14.0/rules_foreign_cc-0.14.0.tar.gz",
         patches = [
             "@enkit//bazel/dependencies:rules_foreign_cc_export_functions.patch",
-            "@enkit//bazel/dependencies:rules_foreign_cc_module_linker_flags.patch",
+            "@enkit//bazel/dependencies:rules_foreign_cc_copy_ownership.patch",
         ],
         patch_args = ["-p1"],
     )
